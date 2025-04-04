@@ -4,20 +4,32 @@ package com.example.jzykiprogramowaniadozastosowabiomedycznych.Lista_1
  * @author Sebastian Kłusek 268412
  */
 
-fun dnaNaRNA(dna: List<Char>): List<Char> {
-    val rna = dna.map {
-        when (it) {
-            'A' -> 'U'
-            'T' -> 'A'
-            'G' -> 'C'
-            'C' -> 'G'
-            else -> return listOf('B') // Błąd, jeśli niepoprawny nukleotyd
-        }
-    }
-    return rna.reversed() // Odwrócenie kolejności, by uzyskać nić w kierunku 5' do 3'
+fun komplement(nicKodujaca: String): String {
+    /**
+     * Funkcja, która dla sekwencji nici kodującej DNA znajduje i zwraca sekwencję nici matrycowej.
+     * Zasady komplementarności:
+     * A ↔ T, C ↔ G
+     */
+    val mapaKomplementarna = mapOf('A' to 'T', 'T' to 'A', 'C' to 'G', 'G' to 'C')
+    return nicKodujaca.map { mapaKomplementarna[it] ?: it }.joinToString("")
 }
 
-fun mRNADoBialek(mRNA: List<Char>): List<String> {
+fun transkrybuj(nicMatrycowa: String): String {
+    /**
+     * Funkcja, która dla sekwencji nici matrycowej DNA znajduje i zwraca sekwencję RNA.
+     * Zasady transkrypcji:
+     * A → U, T → A, C → G, G → C
+     */
+    val mapaTranskrypcji = mapOf('A' to 'U', 'T' to 'A', 'C' to 'G', 'G' to 'C')
+    return nicMatrycowa.map { mapaTranskrypcji[it] ?: it }.joinToString("")
+}
+
+fun transluj(mRNA: String): List<String> {
+    /**
+     * Funkcja, która dla sekwencji mRNA znajduje i zwraca sekwencję białka.
+     * Kodony są odczytywane w trójkach.
+     */
+
     val kodonTabela = mapOf(
         "UUU" to "Phe", "UUC" to "Phe", "UUA" to "Leu", "UUG" to "Leu",
         "CUU" to "Leu", "CUC" to "Leu", "CUA" to "Leu", "CUG" to "Leu",
@@ -37,25 +49,31 @@ fun mRNADoBialek(mRNA: List<Char>): List<String> {
         "GGU" to "Gly", "GGC" to "Gly", "GGA" to "Gly", "GGG" to "Gly"
     )
 
-    val proteins = mutableListOf<String>()
-    for (i in mRNA.indices step 3) {
-        if (i + 2 < mRNA.size) {
-            val kodon = "${mRNA[i]}${mRNA[i + 1]}${mRNA[i + 2]}"
-            kodonTabela[kodon]?.let { proteins.add(it) }
-            if (kodonTabela[kodon] == "STOP") break
-        }
+    val bialka = mutableListOf<String>()
+    var start = mRNA.indexOf("AUG")
+    if (start == -1) return emptyList()
+
+    while (start + 2 < mRNA.length) {
+        val kodon = mRNA.substring(start, start + 3)
+        val aminokwas = kodonTabela[kodon] ?: break
+        if (aminokwas == "STOP") break
+        bialka.add(aminokwas)
+        start += 3
     }
-    return proteins
+    return bialka
 }
 
-
+// Przykładowe wywołania:
 fun main() {
-    val dnaSequence = listOf('A', 'G', 'A', 'C', 'T')
-    val rnaSequence = dnaNaRNA(dnaSequence)
-    println("RNA: $rnaSequence")
+    val dnaKodujaca = "ATGCGTACG"
+    val dnaMatrycowa = komplement(dnaKodujaca)
+    val rna = transkrybuj(dnaMatrycowa)
+    val bialka = transluj(rna)
 
-    val proteins = mRNADoBialek(rnaSequence)
-    println("Białka: $proteins")
+    println("Nici matrycowa: $dnaMatrycowa")
+    println("Sekwencja RNA: $rna")
+    println("Sekwencja bialek: ${bialka.joinToString(", ")}")
 }
+
 
 
