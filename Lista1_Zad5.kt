@@ -5,6 +5,16 @@ package com.example.jzykiprogramowaniadozastosowabiomedycznych.Lista_1
  */
 
 fun collatz(n: Int, wynik: MutableList<Int>): List<Int>? {
+
+    /**
+     * Generuje ciąg Collatza dla zadanej liczby n.
+     * Ciąg kończy się, gdy osiągnięta zostanie liczba 1, później ciąg wpadłby w pętlę 4, 2, 1.
+     *
+     * @param n liczba początkowa ciągu
+     * @param wynik lista przechowująca kolejne elementy ciągu
+     * @return lista zawierająca cały ciąg Collatza lub null, jeśli dane wejściowe są niepoprawne
+     */
+
     wynik.add(n)
 
     if (wynik[wynik.size - 1] == 1) {
@@ -22,6 +32,7 @@ fun collatz(n: Int, wynik: MutableList<Int>): List<Int>? {
 
 fun main() {
 
+    //test funkcji
     var x = 10001
     val wynik = mutableListOf<Int>()
 

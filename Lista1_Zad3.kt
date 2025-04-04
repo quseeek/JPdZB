@@ -6,7 +6,12 @@ package com.example.jzykiprogramowaniadozastosowabiomedycznych.Lista_1
  */
 
 fun podzbiory(zbior: List<Any>): List<List<Any>> {
-
+    /**
+     * Funkcja zwraca wszystkie podzbiory zbioru.
+     *
+     * @param zbior lista zawierająca elementy zbioru
+     * @return lista zawierająca wszystkie podzbiory zbioru
+     */
     val podzbiory = mutableListOf<List<Any>>()
     val x = zbior.size
 
@@ -28,7 +33,7 @@ fun podzbiory(zbior: List<Any>): List<List<Any>> {
 
 fun main(){
 
-
+    //test funkcji
     val podzbiory = podzbiory(listOf("a", "b", "c", "d"))
 
     println(podzbiory)

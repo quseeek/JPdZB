@@ -5,7 +5,13 @@ package com.example.jzykiprogramowaniadozastosowabiomedycznych.Lista_1
  */
 
 fun fibonacci(n: Int): List<Int>?{
-
+    /**
+     * Funkcja zwraca n pierwszych wyrazów ciągu Fibonacciego.
+     * Ciąg zaczyna się od 1, 1, 2, 3, 5, 8, ...
+     *
+     * @param n liczba wyrazów ciągu Fibonacciego
+     * @return lista zawierająca n pierwszych wyrazów ciągu Fibonacciego lub null, jeśli dane wejściowe są niepoprawne
+     */
     if (n <= 0){
         return null
     } else if (n == 1){
@@ -27,6 +33,7 @@ fun fibonacci(n: Int): List<Int>?{
 
 fun main(){
 
+    //test funkcji z zerowym argumentem
     var x = 0
     var fibonnacci = fibonacci(x)
 
@@ -36,6 +43,7 @@ fun main(){
         println("$x pierwszych wyrazow ciagu Fibonacciego: $fibonnacci")
     }
 
+    //test funkcji z ujemnym argumentem
     x = -1000
     fibonnacci = fibonacci(x)
 
@@ -45,6 +53,7 @@ fun main(){
         println("$x pierwszych wyrazow ciagu Fibonacciego: $fibonnacci")
     }
 
+    //test funkcji
     x = 40
     fibonnacci = fibonacci(x)
 

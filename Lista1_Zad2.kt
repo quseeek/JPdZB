@@ -8,7 +8,13 @@ package com.example.jzykiprogramowaniadozastosowabiomedycznych.Lista_1
  */
 
 fun wspolne(a: List<Int>, b: List<Int>): List<Int> {
-
+    /**
+     * Funkcja zwracająca część wspólną dwóch multizbiorów.
+     *
+     * @param a pierwszy multizbiór
+     * @param b drugi multizbiór
+     * @return lista zawierająca część wspólną dwóch multizbiorów
+     */
     val wspolne = mutableListOf<Int>()
 
     val sortedA = a.sorted()
@@ -38,6 +44,8 @@ fun wspolne(a: List<Int>, b: List<Int>): List<Int> {
 }
 
 fun main(){
+
+    //test funkcji
     val a = listOf(1, 2, 4, 2, 5, 6, 7)
     val b = listOf(0, 2, 2, 5, 4, 8, 9)
     val wspolne = wspolne(a, b)
