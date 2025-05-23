@@ -1,3 +1,10 @@
+#' @author Sebastian Kłusek 268412
+#' 
+#' Funkcja zwraca wszystkie podzbiory zbioru.
+#'
+#' @param zbior lista zawierająca elementy zbioru
+#' @return lista zawierająca wszystkie podzbiory zbioru
+#' 
 podzbiory <- function(zbior) {
   
   n <- length(zbior)

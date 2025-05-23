@@ -1,3 +1,11 @@
+#' @author Sebastian Kłusek 268412
+#' 
+#' Funkcja zwraca n pierwszych wyrazów ciągu Fibonacciego.
+#' Ciąg zaczyna się od 1, 1, 2, 3, 5, 8, ...
+#'
+#' @param n liczba wyrazów ciągu Fibonacciego
+#' @return lista zawierająca n pierwszych wyrazów ciągu Fibonacciego lub null, jeśli dane wejściowe są niepoprawne
+#' 
 fibonacci <- function(n) {
   
   if (n <= 0){
